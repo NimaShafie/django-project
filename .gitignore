@@ -131,3 +131,6 @@ dmypy.json
 # hide db connection username & pass
 mysite/mysite/.pg_service.conf
 mysite/mysite/.my_pgpass
+
+# hide env
+.env

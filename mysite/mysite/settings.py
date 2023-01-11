@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,10 +21,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-tc-rs%ginn^%pmh11)np#)-hv9o4!f*62yxukji+5k+kjp)vym'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', cast=bool) 
 
 ALLOWED_HOSTS = []
 
@@ -79,14 +80,17 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+
 # using postgresql
+# engine might have to change to: 'django.db.backends.postgresql_psycopg2',
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'OPTIONS': {
-            'service': 'my_service',
-            'passfile': '.my_pgpass',
-        },
+        'NAME': config('DB_NAME'), 
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
+        'PORT': config('DB_PORT'),
     }
 }
 
@@ -115,7 +119,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'PST'
 
 USE_I18N = True
 
