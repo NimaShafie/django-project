@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# hide db connection username & pass
+mysite/mysite/.pg_service.conf
+mysite/mysite/.my_pgpass
