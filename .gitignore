@@ -134,3 +134,7 @@ mysite/mysite/.my_pgpass
 
 # hide env
 .env
+
+# hide postgresq cred
+.pg_service.conf
+.my_pgpass
